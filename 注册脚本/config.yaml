@@ -1,0 +1,19 @@
+# 账号注册相关
+registration:
+  username: "your_textnow_username"
+  sid_cookie: "your_sid_cookie"
+
+# 锁定接口相关
+locker:
+  base_url: "https://api.yourdomain.com"
+  api_key: "YOUR_API_KEY"  # 或其他鉴权方式
+
+# 日志
+logging:
+  level: "INFO"
+  log_file: "logs/operation.log"
+
+# 速率限制（可根据实际情况调整）
+rate_limit:
+  min_delay: 30   # 秒
+  max_delay: 120  # 秒

@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  sms-register:
+    build: .
+    image: sms-register:latest
+    container_name: sms-register
+    working_dir: /app
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+      - ./phone_numbers.csv:/app/phone_numbers.csv:ro
+      - ./logs:/app/logs
+      - ./registration_results.csv:/app/registration_results.csv
+    command: ["python", "batch_register.py"]
+  sms-lock:
+    build: .
+    image: sms-lock:latest
+    container_name: sms-lock
+    working_dir: /app
+    depends_on:
+      - sms-register
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+      - ./logs:/app/logs
+      - ./registration_results.csv:/app/registration_results.csv
+    command: ["python", "lock_accounts.py"]
